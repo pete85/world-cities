@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  font-size: 15px;
+  font-family: 'Montserrat', Helvetica Neue, sans-serif !important;
+}
+
+h1 {
+  font: 4rem/5rem 'Playfair Display', serif;
+}
+
+h2 {
+  font: 3rem/4rem 'Playfair Display', serif;
+}
+
+h3 {
+  font: 600 2.5rem/3.5rem 'Montserrat', Helvetica Neue, sans-serif;
+}
+
+h4 {
+  font: 600 1.3rem/2.5rem 'Montserrat', Helvetica Neue, sans-serif;
+}
+
+p {
+  font: 400 1rem/2rem 'Montserrat', Helvetica Neue, sans-serif;
+  margin: 0;
+}
+
+h1, h2, h3, h4, p {
+  margin: 0 !important;
+}
+
+.app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.app-body {
+  height: calc(100vh - 140px);
+  margin-top: 80px;
+  overflow-y: auto;
+}
+
+.app-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}

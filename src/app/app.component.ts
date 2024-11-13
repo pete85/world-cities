@@ -73,13 +73,13 @@ export class AppComponent implements OnDestroy {
             this.citiesList = response.data;
             this.totalCities = response.totalRecords;
             this.citiesStringList = response.data.map(
-              (el: City) => `${el.name}, ${el.region || ''}  (${el.country})`.replace(/\s\|\s$/, '')
+              (el: City) => `${el.name}, ${el.region || ''} (${el.country})`.replace(/\s\|\s$/, '')
             );
           }
         },
         error: err => {
           this.totalCities = 0;
-          console.error('Error: ', err);
+          console.error(err);
         }
       }
     );

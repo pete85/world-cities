@@ -1,6 +1,62 @@
-# Sailpoint
+# City Finder
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.11.
+
+## Introduction
+
+For the purpose of this test, I implemented a simple app with **AppComponent (AC)** and its child, **SearchComponent (SC)**. SC, with its input field, passes data input up to AC.
+
+## Implementation
+
+### AppComponent
+
+```typescript
+getCities(name: string) {
+  this.totalCities = 0;
+  this.subCities$ = this._citiesService.getCities(name).subscribe(
+    {
+      next: response => {
+        this.subscriptionList.add(this.subCities$);
+        if (response) {
+          this.citiesList = response.data;
+          this.totalCities = response.totalRecords;
+          this.citiesStringList = response.data.map(
+            (el: City) => `${el.name}, ${el.region || ''} (${el.country})`.replace(/\s\|\s$/, '')
+          );
+        }
+      },
+      error: err => {
+        this.totalCities = 0;
+        console.error(err);
+      }
+    }
+  );
+}
+```
+
+### SearchComponent
+
+### Data source
+
+After analyzing the **world-cities.txt**, the first step was to produce a JSON file for all records. 
+As one of the requirements was to write a webserver, I decided to utilise my Portfolio's existing server,
+built with Node.js and Express. Data is stored in MongoDB.
+
+There was one obstacle to overcome - duplicated records. As all city names are valid and belong to different regions of the world, 
+I thought it would be good to enhance the JSON by adding **country** and **region** fields. Unfortunately, with such a
+large dataset, even utilising ChatGPT was problematic. Luckily, I found the exact same dataset in JSON, including
+all fields I was after. This was found on [codesandbox.io](https://codesandbox.io/p/github/riyantowibowo/world-cities-json/main?file=%2Fdata%2Fcities.json%3A38495%2C20-38495%2C29)
+
+#### Node.js with Express server
+
+
+
+##### MongoDB
+
+## Testing
+
+
+
 
 ## Development server
 

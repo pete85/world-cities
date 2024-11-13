@@ -1,3 +1,8 @@
 <div class="tw-flex tw-flex-auto tw-h-full tw-justify-center tw-items-center">
-  <input type="text" #cityInput placeholder="Find City" class="tw-p-3 tw-rounded tw-min-w-[250px]" (keyup)="onCitySearch(cityInput.value)"/>
+  <input type="text" #cityInput list="records" placeholder="Find City" class="tw-p-3 tw-rounded tw-min-w-[250px]"
+         [(ngModel)]="selectedRecord" (keyup)="onSearch(cityInput.value)" (ngModelChange)="onSelected()"/>
+
+  <datalist id="records">
+    <option *ngFor="let item of recordsStringList" [value]="item"></option>
+  </datalist>
 </div>

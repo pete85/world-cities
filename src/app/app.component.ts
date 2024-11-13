@@ -21,6 +21,7 @@ import {NgIf} from '@angular/common';
 export class AppComponent implements OnInit, OnDestroy {
 
   citiesList: City[] = [];
+  citiesStringList: string[] = [];
   subCities$: Subscription | undefined;
   subscriptionList = new Subscription();
   title: string = 'Cities Search';
@@ -32,7 +33,6 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   handleCitySearch(searchString: string): void {
-    console.log('searchString: ', searchString);
     if (searchString) {
       if (searchString.length > 2) {
         this.getCities(searchString);
@@ -41,6 +41,10 @@ export class AppComponent implements OnInit, OnDestroy {
         this.totalCities = 0;
       }
     }
+  }
+
+  handleSelectedRecord(selectedRecord: string): void {
+    console.log('selectedRecord: ', selectedRecord);
   }
 
   /**
@@ -56,6 +60,9 @@ export class AppComponent implements OnInit, OnDestroy {
           if (response) {
             this.citiesList = response.data;
             this.totalCities = response.totalRecords;
+            this.citiesStringList = response.data.map(
+              (el: City) => `${el.name}, ${el.region || ''}  (${el.country})`.replace(/\s\|\s$/, '')
+            );
           }
         },
         error: err => {

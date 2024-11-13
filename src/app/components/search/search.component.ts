@@ -1,16 +1,30 @@
-import {Component, output} from '@angular/core';
+import {Component, Input, output} from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {NgForOf} from '@angular/common';
 
 @Component({
   selector: 'app-search',
   standalone: true,
-  imports: [],
+  imports: [
+    FormsModule,
+    NgForOf
+  ],
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss'
 })
 export class SearchComponent {
-  cityName = output<string>();
 
-  onCitySearch(searchString: string) {
-    this.cityName.emit(searchString);
+  @Input() recordsStringList: string[] = [];
+
+  recordName = output<string>();
+  selectedRecord: string = '';
+  selectedRecordChange = output<string>();
+
+  onSearch(searchString: string) {
+    this.recordName.emit(searchString);
+  }
+
+  onSelected() {
+    this.selectedRecordChange.emit(this.selectedRecord);
   }
 }

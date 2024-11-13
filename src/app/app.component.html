@@ -12,16 +12,21 @@
       <app-search (recordName)="handleCitySearch($event)" [recordsStringList]="citiesStringList"
                   (selectedRecordChange)="handleSelectedRecord($event)"></app-search>
     </div>
+
+    <div class="tw-flex tw-justify-center tw-items-center tw-gap-3 tw-p-5 tw-text-center" *ngIf="selectedRecord">
+      <p *ngIf="innerWidth >= 768">Record selected:</p>
+      <p class="tw-font-bold">{{ selectedRecord }}</p>
+    </div>
   </div>
-  <div class="app-footer tw-h-[60px] tw-bg-slate-800">
-    <div class="tw-h-full tw-flex tw-justify-center tw-items-center tw-gap-3" *ngIf="!selectedRecord">
+  <div class="app-footer tw-flex tw-flex-auto tw-h-[60px] tw-bg-slate-800 tw-gap-5 tw-justify-between">
+    <div class="tw-h-full tw-flex tw-justify-center tw-items-center tw-gap-3 tw-px-5" *ngIf="!selectedRecord">
       <p class="tw-text-white">Records found:</p>
       <p class="tw-text-white tw-font-bold">{{ totalCities }}</p>
     </div>
 
-    <div class="tw-h-full tw-flex tw-justify-center tw-items-center tw-gap-3" *ngIf="selectedRecord && innerWidth >= 768">
-      <p class="tw-text-white">Record selected:</p>
-      <p class="tw-text-white tw-font-bold">{{ selectedRecord }}</p>
+    <div class="tw-flex tw-h-full tw-justify-center tw-items-center tw-px-5 tooltip">
+      <span class="tooltipText">GitHub repo</span>
+      <i class="fab fa-github github-link" (click)="navigateTo('https://github.com/pete85/world-cities')"></i>
     </div>
   </div>
 </div>

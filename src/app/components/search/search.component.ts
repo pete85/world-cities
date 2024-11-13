@@ -20,10 +20,17 @@ export class SearchComponent {
   selectedRecord: string = '';
   selectedRecordChange = output<string>();
 
+  /**
+   * Emit search string for http request
+   * @param searchString
+   */
   onSearch(searchString: string) {
     this.recordName.emit(searchString);
   }
 
+  /**
+   * Emit selected record
+   */
   onSelected() {
     if (this.recordsStringList.includes(this.selectedRecord)) {
       this.selectedRecordChange.emit(this.selectedRecord);

@@ -16,7 +16,7 @@ import {NgIf} from '@angular/common';
     NgIf
   ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnDestroy {
 
@@ -42,6 +42,11 @@ export class AppComponent implements OnDestroy {
     this.onResize();
   }
 
+  /**
+   * Http request is made with the name query parameter which takes city name. Therefore, searchString has to be split
+   * and trimmed to avoid errors. Name's length is checked and if it's 2 characters or longer, the getCities() is called.
+   * @param searchString
+   */
   handleCitySearch(searchString: string): void {
     if (searchString) {
       const cityName = searchString.split(",")[0].split("(")[0].trim();
@@ -83,6 +88,10 @@ export class AppComponent implements OnDestroy {
         }
       }
     );
+  }
+
+  navigateTo(url: string) {
+    window.open(url, '_blank');
   }
 
   ngOnDestroy() {

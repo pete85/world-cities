@@ -21,7 +21,6 @@ export class SearchComponent {
   selectedRecordChange = output<string>();
 
   onSearch(searchString: string) {
-    console.log('SEARCH STRING: ', searchString);
     this.recordName.emit(searchString);
   }
 

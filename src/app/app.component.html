@@ -4,8 +4,8 @@
     class="app-header tw-flex tw-flex-auto tw-h-[80px] tw-bg-slate-800 tw-text-white tw-justify-center tw-items-center tw-px-5">
     <h2 class="tw-text-white">City search</h2>
   </div>
-  <div class="app-body tw-flex tw-flex-col tw-h-full tw-bg-slate-200 tw-justify-center">
-    <div class="tw-flex tw-items-center tw-justify-center tw-mb-4">
+  <div class="app-body tw-flex tw-flex-col tw-h-full tw-bg-slate-200 md:tw-justify-center">
+    <div class="tw-flex tw-items-center tw-justify-center tw-mb-4 tw-p-5 tw-text-center">
       <p>Start typing your name. Search will begin from the second character entered, for optimised performance.</p>
     </div>
     <div class="tw-flex tw-p-5 tw-items-center tw-justify-center tw-gap-5">
@@ -19,7 +19,7 @@
       <p class="tw-text-white tw-font-bold">{{ totalCities }}</p>
     </div>
 
-    <div class="tw-h-full tw-flex tw-justify-center tw-items-center tw-gap-3" *ngIf="selectedRecord">
+    <div class="tw-h-full tw-flex tw-justify-center tw-items-center tw-gap-3" *ngIf="selectedRecord && innerWidth >= 768">
       <p class="tw-text-white">Record selected:</p>
       <p class="tw-text-white tw-font-bold">{{ selectedRecord }}</p>
     </div>

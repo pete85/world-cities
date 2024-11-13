@@ -1,4 +1,4 @@
-import {Component, inject, OnDestroy, OnInit} from '@angular/core';
+import {Component, HostListener, inject, OnDestroy, OnInit} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {Observable, Subscription} from 'rxjs';
 import {CitiesService} from './services/cities/cities.service';
@@ -18,10 +18,12 @@ import {NgIf} from '@angular/common';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnDestroy {
 
   citiesList: City[] = [];
   citiesStringList: string[] = [];
+  innerWidth: number = 0;
+  innerHeight: number = 0;
   selectedRecord: string = '';
   subCities$: Subscription | undefined;
   subscriptionList = new Subscription();
@@ -30,7 +32,14 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private _citiesService = inject(CitiesService);
 
-  ngOnInit() {
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.innerWidth = window.innerWidth;
+    this.innerHeight = window.innerHeight;
+  }
+
+  constructor() {
+    this.onResize();
   }
 
   handleCitySearch(searchString: string): void {

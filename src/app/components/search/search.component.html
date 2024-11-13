@@ -1,5 +1,5 @@
-<div class="tw-flex tw-flex-col tw-h-full tw-justify-center tw-items-center">
-  <input type="text" #cityInput list="records" placeholder="Find City" class="tw-p-3 tw-rounded tw-min-w-[250px] tw-w-fit"
+<div class="tw-flex tw-flex-col tw-h-full tw-justify-center tw-items-center tw-p-5">
+  <input type="text" #cityInput list="records" placeholder="Find City" class="tw-p-3 tw-rounded tw-min-w-[200px] sm:tw-min-w-[400px] tw-max-w-full tw-w-fit"
          [(ngModel)]="selectedRecord" (keyup)="onSearch(cityInput.value)" (ngModelChange)="onSelected()"/>
 
   <datalist id="records">

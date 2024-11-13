@@ -10,6 +10,9 @@
 
 .tooltip {
   .tooltipText {
+    position: absolute;
+    right: 20px;
+    bottom: 30px;
     visibility: hidden;
     width: 120px;
     background-color: theme('colors.gray.800');
@@ -17,7 +20,6 @@
     text-align: center;
     padding: 5px;
     border-radius: 4px;
-    position: relative;
     z-index: 1;
     transform: translateY(-75%);
     opacity: 0;

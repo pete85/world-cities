@@ -4,12 +4,16 @@ import {Observable, Subscription} from 'rxjs';
 import {CitiesService} from './services/cities/cities.service';
 import {City} from './models/cities';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {SearchComponent} from './components/search/search.component';
+import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
-    RouterOutlet
+    RouterOutlet,
+    SearchComponent,
+    NgIf
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
@@ -25,7 +29,18 @@ export class AppComponent implements OnInit, OnDestroy {
   private _citiesService = inject(CitiesService);
 
   ngOnInit() {
-    this.getCities('wars');
+  }
+
+  handleCitySearch(searchString: string): void {
+    console.log('searchString: ', searchString);
+    if (searchString) {
+      if (searchString.length > 2) {
+        this.getCities(searchString);
+      } else {
+        this.citiesList = [];
+        this.totalCities = 0;
+      }
+    }
   }
 
   /**
@@ -33,6 +48,7 @@ export class AppComponent implements OnInit, OnDestroy {
    * @param name
    */
   getCities(name: string) {
+    this.totalCities = 0;
     this.subCities$ = this._citiesService.getCities(name).subscribe(
       {
         next: response => {
@@ -43,6 +59,7 @@ export class AppComponent implements OnInit, OnDestroy {
           }
         },
         error: err => {
+          this.totalCities = 0;
           console.error('Error: ', err);
         }
       }

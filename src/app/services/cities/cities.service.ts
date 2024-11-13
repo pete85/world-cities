@@ -13,7 +13,6 @@ export class CitiesService {
 
   private _http = inject(HttpClient);
   baseUrl: string = environment.baseUrl;
-  headers: HttpHeaders = new HttpHeaders().set("ngrok-skip-browser-warning", `true`);
 
   getCities(name: string): Observable<Cities> {
     let params = new HttpParams();

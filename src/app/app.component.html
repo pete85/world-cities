@@ -4,17 +4,24 @@
     class="app-header tw-flex tw-flex-auto tw-h-[80px] tw-bg-slate-800 tw-text-white tw-justify-center tw-items-center tw-px-5">
     <h2 class="tw-text-white">City search</h2>
   </div>
-  <div class="app-body tw-flex tw-flex-col tw-bg-slate-200">
-    <div>
-      <h4>Start typing the city name. Search will begin from the third character entered.</h4>
+  <div class="app-body tw-flex tw-flex-col tw-h-full tw-bg-slate-200 tw-justify-center">
+    <div class="tw-flex tw-items-center tw-justify-center tw-mb-4">
+      <p>Start typing your name. Search will begin from the second character entered, for optimised performance.</p>
     </div>
     <div class="tw-flex tw-p-5 tw-items-center tw-justify-center tw-gap-5">
       <app-search (recordName)="handleCitySearch($event)" [recordsStringList]="citiesStringList"
                   (selectedRecordChange)="handleSelectedRecord($event)"></app-search>
-      <div class="tw-flex tw-rounded tw-px-3 tw-bg-slate-300 tw-items-center tw-justify-center">
-        <h4>{{ totalCities }}</h4>
-      </div>
     </div>
   </div>
-  <div class="app-footer tw-h-[60px] tw-bg-slate-800"></div>
+  <div class="app-footer tw-h-[60px] tw-bg-slate-800">
+    <div class="tw-h-full tw-flex tw-justify-center tw-items-center tw-gap-3" *ngIf="!selectedRecord">
+      <p class="tw-text-white">Records found:</p>
+      <p class="tw-text-white tw-font-bold">{{ totalCities }}</p>
+    </div>
+
+    <div class="tw-h-full tw-flex tw-justify-center tw-items-center tw-gap-3" *ngIf="selectedRecord">
+      <p class="tw-text-white">Record selected:</p>
+      <p class="tw-text-white tw-font-bold">{{ selectedRecord }}</p>
+    </div>
+  </div>
 </div>

@@ -22,6 +22,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   citiesList: City[] = [];
   citiesStringList: string[] = [];
+  selectedRecord: string = '';
   subCities$: Subscription | undefined;
   subscriptionList = new Subscription();
   title: string = 'Cities Search';
@@ -34,8 +35,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
   handleCitySearch(searchString: string): void {
     if (searchString) {
-      if (searchString.length > 2) {
-        this.getCities(searchString);
+      const cityName = searchString.split(",")[0].split("(")[0].trim();
+      if (cityName.length >= 2) {
+        this.getCities(cityName);
       } else {
         this.citiesList = [];
         this.totalCities = 0;
@@ -43,8 +45,9 @@ export class AppComponent implements OnInit, OnDestroy {
     }
   }
 
+
   handleSelectedRecord(selectedRecord: string): void {
-    console.log('selectedRecord: ', selectedRecord);
+    this.selectedRecord = selectedRecord;
   }
 
   /**

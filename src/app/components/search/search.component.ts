@@ -21,10 +21,15 @@ export class SearchComponent {
   selectedRecordChange = output<string>();
 
   onSearch(searchString: string) {
+    console.log('SEARCH STRING: ', searchString);
     this.recordName.emit(searchString);
   }
 
   onSelected() {
-    this.selectedRecordChange.emit(this.selectedRecord);
+    if (this.recordsStringList.includes(this.selectedRecord)) {
+      this.selectedRecordChange.emit(this.selectedRecord);
+    } else {
+      this.selectedRecordChange.emit('');
+    }
   }
 }

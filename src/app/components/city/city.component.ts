@@ -5,6 +5,7 @@ import {Subscription} from 'rxjs';
 import {City} from 'app/models/cities';
 import {WorldGeoDataCity} from 'app/models/world-geo-data';
 import {DecimalPipe, NgIf} from '@angular/common';
+import {WikipediaService} from 'app/services/wikipedia/wikipedia.service';
 
 @Component({
   selector: 'app-city',
@@ -23,11 +24,13 @@ export class CityComponent implements OnInit, OnDestroy {
   cityData: WorldGeoDataCity | null = null;
   subCity$: Subscription | undefined;
   subCityDetails$: Subscription | undefined;
+  subWikiDescription$: Subscription | undefined;
   subscriptionList = new Subscription();
 
   constructor(
     private _route: ActivatedRoute,
     private _citiesService: CitiesService,
+    private _wikiService: WikipediaService,
     private _router: Router
   ) {}
 
@@ -64,6 +67,21 @@ export class CityComponent implements OnInit, OnDestroy {
         if (response) {
           console.log('RES: ', response);
           this.cityData = response.data;
+          this.getWikiDescription(response.data.wiki_url);
+        }
+      },
+      error: error => {
+        console.error(error);
+      }
+    })
+  }
+
+  getWikiDescription(title: string) {
+    const tempTitle = "https://en.wikipedia.org/wiki/Pozna%C5%84";
+    this.subWikiDescription$ = this._wikiService.getFirstParagraph(title).subscribe({
+      next: response => {
+        if (response) {
+          console.log('WIKI RES: ', response);
         }
       },
       error: error => {

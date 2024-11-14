@@ -4,6 +4,7 @@ import {SearchComponent} from '../search/search.component';
 import {City} from 'app/models/cities';
 import {Subscription} from 'rxjs';
 import {CitiesService} from 'app/services/cities/cities.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -28,6 +29,7 @@ export class HomeComponent implements OnDestroy {
   totalCities: number = 0;
 
   private _citiesService = inject(CitiesService);
+  private _router = inject(Router);
 
   @HostListener('window:resize', ['$event'])
   onResize() {
@@ -85,6 +87,10 @@ export class HomeComponent implements OnDestroy {
         }
       }
     );
+  }
+
+  viewCityDetails() {
+    this._router.navigate([`/city/${this.citiesList[0].geonameid}`]);
   }
 
   ngOnDestroy() {

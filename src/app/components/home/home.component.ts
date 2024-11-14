@@ -90,8 +90,7 @@ export class HomeComponent implements OnDestroy {
   }
 
   viewCityDetails() {
-    this._router.navigate(['/city'], { queryParams: { geonameid: this.citiesList[0].geonameid } });
-
+    this._router.navigate(['/city'], { queryParams: { geonameid: this.citiesList[0].geonameid }, state: { city: this.citiesList[0] } });
   }
 
   ngOnDestroy() {

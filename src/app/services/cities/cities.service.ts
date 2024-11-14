@@ -1,7 +1,7 @@
 import {inject, Injectable, signal} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {Cities} from 'app/models/cities';
+import {Observable, of, tap} from 'rxjs';
+import {Cities, City} from 'app/models/cities';
 import {environment} from '../../../environments/environment';
 import {WorldGeoData} from 'app/models/world-geo-data';
 
@@ -9,10 +9,8 @@ import {WorldGeoData} from 'app/models/world-geo-data';
   providedIn: 'root'
 })
 export class CitiesService {
-
-  constructor() { }
-
   private _http = inject(HttpClient);
+  private _cityCache: any = null;
   baseUrl: string = environment.baseUrl;
   totalCitiesSignal = signal<number>(0);
 
@@ -30,13 +28,25 @@ export class CitiesService {
     return this._http.get<Cities>(`${this.baseUrl}/api/cities`, {params: params});
   }
 
-  getCity(geonameid: string): Observable<WorldGeoData> {
+  getCity(geonameid: string): Observable<City> {
+    return this._http.get<City>(`${this.baseUrl}/api/cities/${geonameid}`);
+  }
+
+  getCityDetails(geonameid: string): Observable<WorldGeoData> {
     let params = new HttpParams();
 
     if (geonameid) {
       params = params.set('cityId', geonameid);
     }
 
-    return this._http.get<WorldGeoData>(`${this.baseUrl}/world-geo-data/city`, {params: params});
+    if (this._cityCache) {
+      return of(this._cityCache);
+    } else {
+      // return this._http.get<WorldGeoData>(`${this.baseUrl}/world-geo-data/city`, {params: params});
+      return this._http.get<any>(`${this.baseUrl}/world-geo-data/city`, {params: params}).pipe(
+        tap(data => this._cityCache = data)
+      );
+    }
+
   }
 }

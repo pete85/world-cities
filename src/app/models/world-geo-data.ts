@@ -1,9 +1,9 @@
 export interface WorldGeoData {
   daily_limit_left: number;
-  data: CityModel
+  data: WorldGeoDataCity
 }
 
-export interface CityModel {
+export interface WorldGeoDataCity {
   geonameid: number
   name: string
   population: number

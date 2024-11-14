@@ -55,3 +55,38 @@ h1, h2, h3, h4, p {
   left: 0;
   right: 0;
 }
+
+.github-link {
+  font-size: 24px;
+  color: theme('colors.white');
+  transition: all 300ms ease-in-out;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.tooltip {
+  .tooltipText {
+    position: absolute;
+    right: 20px;
+    bottom: 30px;
+    visibility: hidden;
+    width: 120px;
+    background-color: theme('colors.gray.800');
+    color: theme('colors.white');
+    text-align: center;
+    padding: 5px;
+    border-radius: 4px;
+    z-index: 1;
+    transform: translateY(-75%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  // Show the tooltip text on hover
+  &:hover .tooltipText {
+    visibility: visible;
+    opacity: 1;
+  }
+}

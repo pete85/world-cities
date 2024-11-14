@@ -1,0 +1,12 @@
+<div class="tw-flex tw-items-center tw-justify-center tw-mb-4 tw-p-5 tw-text-center">
+  <p>Start typing your name. Search will begin from the second character entered, for optimised performance.</p>
+</div>
+<div class="tw-flex tw-p-5 tw-items-center tw-justify-center tw-gap-5">
+  <app-search (recordName)="handleCitySearch($event)" [recordsStringList]="citiesStringList"
+              (selectedRecordChange)="handleSelectedRecord($event)"></app-search>
+</div>
+
+<div class="tw-flex tw-justify-center tw-items-center tw-gap-3 tw-p-5 tw-text-center" *ngIf="selectedRecord">
+  <p *ngIf="innerWidth >= 768">Record selected:</p>
+  <p class="tw-font-bold">{{ selectedRecord }}</p>
+</div>

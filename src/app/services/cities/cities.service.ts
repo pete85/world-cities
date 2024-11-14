@@ -1,7 +1,7 @@
-import {inject, Injectable} from '@angular/core';
+import {inject, Injectable, signal} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Cities} from '../../models/cities';
+import {Cities} from 'app/models/cities';
 import {environment} from '../../../environments/environment';
 
 @Injectable({
@@ -13,6 +13,11 @@ export class CitiesService {
 
   private _http = inject(HttpClient);
   baseUrl: string = environment.baseUrl;
+  totalCitiesSignal = signal<number>(0);
+
+  setTotalCities(count: number) {
+    this.totalCitiesSignal.set(count);
+  }
 
   getCities(name: string): Observable<Cities> {
     let params = new HttpParams();

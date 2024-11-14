@@ -10,7 +10,7 @@ export const routes: Routes = [
     data: {title: 'home'}
   },
   {
-    path: 'city/:geonameid',
+    path: 'city',
     loadComponent: () => import('app/components/city/city.component').then(m => m.CityComponent),
     title: 'City',
     data: { title: 'city' }

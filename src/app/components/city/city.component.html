@@ -1,1 +1,10 @@
-<p>city works!</p>
+<div class="tw-flex tw-flex-col tw-justify-items-start tw-items-start" *ngIf="cityData">
+  <div class="tw-flex tw-gap-5 tw-p-5">
+    <h1>{{cityData.name}}</h1>
+  </div>
+
+  <div class="tw-flex tw-gap-5 tw-p-5">
+    <h2>{{cityData.country.name}}</h2>
+    <h2>{{cityData.population}}</h2>
+  </div>
+</div>

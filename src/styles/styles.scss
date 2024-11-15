@@ -119,3 +119,21 @@ h1, h2, h3, h4, p {
     background: theme('colors.blue.800');
   }
 }
+
+.cesium-map-container {
+  padding: 20px;
+  width: calc(100% - 40px);
+}
+
+.cesium-container {
+  width: 100%;
+
+  canvas {
+    width: 100% !important;
+    height: 100% !important;
+  }
+}
+
+app-cesium-map {
+  width: 100%;
+}

@@ -25,6 +25,7 @@ export class CityComponent implements OnInit, OnDestroy {
   cityId: string | null = null;
   cityData: WorldGeoDataCity | null = null;
   coordinates: Coordinates | undefined;
+  errorMessage: string | null = null;
   wikiData: string = '';
   subCity$: Subscription | undefined;
   subCityDetails$: Subscription | undefined;
@@ -80,6 +81,8 @@ export class CityComponent implements OnInit, OnDestroy {
       },
       error: error => {
         console.error(error);
+        this.errorMessage = error.error.message;
+        console.log('ERROR: ', error);
       }
     })
   }

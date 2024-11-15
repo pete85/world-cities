@@ -37,7 +37,8 @@ export class CesiumMapComponent implements AfterViewInit {
       vrButton: false,
       infoBox: false,
       selectionIndicator: false,
-      navigationHelpButton: false
+      navigationHelpButton: false,
+      creditContainer: document.createElement('div')
     });
 
     console.log('Coordinates: ', this.coordinates);

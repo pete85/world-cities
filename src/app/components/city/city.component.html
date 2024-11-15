@@ -1,6 +1,6 @@
-<div class="tw-grid tw-gap-5 tw-grid-cols-1 md:tw-grid-cols-2 tw-w-full">
+<div class="tw-grid tw-gap-5 tw-grid-cols-1 md:tw-grid-cols-2 tw-w-full" *ngIf="city && cityData">
   <!-- *** COLUMN 1 *** -->
-  <div class="tw-flex tw-flex-col tw-justify-items-start tw-items-start" *ngIf="city && cityData">
+  <div class="tw-flex tw-flex-col tw-justify-items-start tw-items-start">
     <div class="tw-flex tw-gap-5 tw-p-5">
       <h1>{{ city.name }}</h1>
     </div>
@@ -32,8 +32,15 @@
     <div class="tw-flex tw-flex-col tw-gap-5 tw-p-5" *ngIf="wikiData">
       <p>{{ wikiData }}</p>
     </div>
-    <div class="tw-flex tw-flex-col tw-gap-5 tw-p-5 tw-w-full">
+    <div class="cesium-map-container tw-flex tw-flex-auto">
       <app-cesium-map [coordinates]="coordinates" *ngIf="coordinates"></app-cesium-map>
     </div>
+  </div>
+</div>
+
+<!--<div class="tw-grid tw-gap-5 tw-grid-cols-1 tw-w-full tw-justify-center tw-items-center" *ngIf="!cityData && errorMessage">-->
+<div class="tw-flex tw-justify-center tw-items-center tw-text-center tw-h-full tw-w-full" *ngIf="!cityData && errorMessage">
+  <div class="tw-flex tw-justify-center tw-items-center tw-text-center tw-w-[95%] lg:tw-w-[60%] tw-p-5">
+    <h2>{{errorMessage}}</h2>
   </div>
 </div>

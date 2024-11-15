@@ -1,26 +1,36 @@
-<div class="tw-flex tw-flex-col tw-justify-items-start tw-items-start" *ngIf="city && cityData">
-  <div class="tw-flex tw-gap-5 tw-p-5">
-    <h1>{{city.name}}</h1>
+<div class="tw-grid tw-gap-5 tw-grid-cols-1 md:tw-grid-cols-2 tw-w-full">
+  <!-- *** COLUMN 1 *** -->
+  <div class="tw-flex tw-flex-col tw-justify-items-start tw-items-start" *ngIf="city && cityData">
+    <div class="tw-flex tw-gap-5 tw-p-5">
+      <h1>{{ city.name }}</h1>
+    </div>
+
+    <div class="tw-flex tw-flex-col tw-gap-3 tw-p-5">
+      <h4>
+        <span class="tw-inline-block tw-w-[200px]">Country:</span>
+        <span class="tw-inline-block tw-mr-5">{{ city.country }}</span>
+        <span class="tw-inline-block tw-bg-slate-200 tw-rounded">{{ cityData.country.code }}</span>
+      </h4>
+      <h4>
+        <span class="tw-inline-block tw-w-[200px]">Region:</span>
+        <span>{{ city.region }}</span>
+      </h4>
+      <h4>
+        <span class="tw-inline-block tw-w-[200px]">Population:</span>
+        <span>{{ cityData.population | number }}</span>
+      </h4>
+      <h4>
+        <span class="tw-inline-block tw-w-[200px]">Currency:</span>
+        <span class="tw-inline-block tw-mr-5">{{ cityData.currency.name }}</span>
+        <span class="tw-inline-block tw-bg-slate-200 tw-rounded">{{ cityData.currency.code }}</span>
+      </h4>
+    </div>
   </div>
 
-  <div class="tw-flex tw-flex-col tw-gap-5 tw-p-5">
-    <h3>
-      <span class="tw-inline-block tw-w-[250px]">Country:</span>
-      <span class="tw-inline-block tw-mr-5">{{city.country}}</span>
-      <span class="tw-inline-block tw-bg-slate-200 tw-rounded">{{cityData.country.code}}</span>
-    </h3>
-    <h3>
-      <span class="tw-inline-block tw-w-[250px]">Region:</span>
-      <span>{{city.region}}</span>
-    </h3>
-    <h3>
-      <span class="tw-inline-block tw-w-[250px]">Population:</span>
-      <span>{{cityData.population | number}}</span>
-    </h3>
-    <h3>
-      <span class="tw-inline-block tw-w-[250px]">Currency:</span>
-      <span class="tw-inline-block tw-mr-5">{{cityData.currency.name}}</span>
-      <span class="tw-inline-block tw-bg-slate-200 tw-rounded">{{cityData.currency.code}}</span>
-    </h3>
+  <!-- *** COLUMN 2 *** -->
+  <div class="tw-flex tw-flex-col tw-justify-items-start tw-items-start">
+    <div class="tw-flex tw-flex-col tw-gap-5 tw-p-5" *ngIf="wikiData">
+      <p>{{ wikiData }}</p>
+    </div>
   </div>
 </div>

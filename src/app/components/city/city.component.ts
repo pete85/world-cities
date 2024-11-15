@@ -22,6 +22,7 @@ export class CityComponent implements OnInit, OnDestroy {
   city: City | null = null;
   cityId: string | null = null;
   cityData: WorldGeoDataCity | null = null;
+  wikiData: string = '';
   subCity$: Subscription | undefined;
   subCityDetails$: Subscription | undefined;
   subWikiDescription$: Subscription | undefined;
@@ -82,6 +83,7 @@ export class CityComponent implements OnInit, OnDestroy {
       next: response => {
         if (response) {
           console.log('WIKI RES: ', response);
+          this.wikiData = response;
         }
       },
       error: error => {

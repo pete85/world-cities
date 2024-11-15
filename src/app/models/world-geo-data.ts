@@ -4,18 +4,18 @@ export interface WorldGeoData {
 }
 
 export interface WorldGeoDataCity {
-  geonameid: number
-  name: string
-  population: number
-  latitude: number
-  longitude: number
-  division: Division
-  country: Country
-  currency: Currency
-  timezone: Timezone
-  wiki_id: string
-  wiki_url: string
-  status: string
+  geonameid: number;
+  name: string;
+  population: number;
+  latitude: number;
+  longitude: number;
+  division: Division;
+  country: Country;
+  currency: Currency;
+  timezone: Timezone;
+  wiki_id: string;
+  wiki_url: string;
+  status: string;
 }
 
 export interface Division {

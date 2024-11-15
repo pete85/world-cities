@@ -2,17 +2,19 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {CitiesService} from 'app/services/cities/cities.service';
 import {Subscription} from 'rxjs';
-import {City} from 'app/models/cities';
+import {City, Coordinates} from 'app/models/cities';
 import {WorldGeoDataCity} from 'app/models/world-geo-data';
 import {DecimalPipe, NgIf} from '@angular/common';
 import {WikipediaService} from 'app/services/wikipedia/wikipedia.service';
+import {CesiumMapComponent} from 'app/components/cesium-map/cesium-map.component';
 
 @Component({
   selector: 'app-city',
   standalone: true,
   imports: [
     NgIf,
-    DecimalPipe
+    DecimalPipe,
+    CesiumMapComponent
   ],
   templateUrl: './city.component.html',
   styleUrl: './city.component.scss'
@@ -22,6 +24,7 @@ export class CityComponent implements OnInit, OnDestroy {
   city: City | null = null;
   cityId: string | null = null;
   cityData: WorldGeoDataCity | null = null;
+  coordinates: Coordinates | undefined;
   wikiData: string = '';
   subCity$: Subscription | undefined;
   subCityDetails$: Subscription | undefined;
@@ -68,6 +71,10 @@ export class CityComponent implements OnInit, OnDestroy {
         if (response) {
           console.log('RES: ', response);
           this.cityData = response.data;
+          this.coordinates = {
+            latitude: this.cityData.latitude,
+            longitude: this.cityData.longitude,
+          }
           this.getWikiDescription(response.data.wiki_url);
         }
       },

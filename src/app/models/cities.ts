@@ -9,3 +9,8 @@ export interface City {
   region?: string;
   geonameid?: number;
 }
+
+export interface Coordinates {
+  latitude: number;
+  longitude: number;
+}

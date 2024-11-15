@@ -32,5 +32,8 @@
     <div class="tw-flex tw-flex-col tw-gap-5 tw-p-5" *ngIf="wikiData">
       <p>{{ wikiData }}</p>
     </div>
+    <div class="tw-flex tw-flex-col tw-gap-5 tw-p-5 tw-w-full">
+      <app-cesium-map [coordinates]="coordinates" *ngIf="coordinates"></app-cesium-map>
+    </div>
   </div>
 </div>

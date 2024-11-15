@@ -7,6 +7,7 @@
     "paths": {
       "app/*": ["src/app/*"]
     },
+    "types": ["cesium"],
     "outDir": "./dist/out-tsc",
     "strict": true,
     "noImplicitOverride": true,

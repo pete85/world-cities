@@ -7,6 +7,7 @@ import {WorldGeoDataCity} from 'app/models/world-geo-data';
 import {DecimalPipe, NgIf} from '@angular/common';
 import {WikipediaService} from 'app/services/wikipedia/wikipedia.service';
 import {CesiumMapComponent} from 'app/components/cesium-map/cesium-map.component';
+import {GoogleChartMapComponent} from 'app/components/google-chart-map/google-chart-map.component';
 
 @Component({
   selector: 'app-city',
@@ -14,7 +15,8 @@ import {CesiumMapComponent} from 'app/components/cesium-map/cesium-map.component
   imports: [
     NgIf,
     DecimalPipe,
-    CesiumMapComponent
+    CesiumMapComponent,
+    GoogleChartMapComponent
   ],
   templateUrl: './city.component.html',
   styleUrl: './city.component.scss'

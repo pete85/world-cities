@@ -24,16 +24,21 @@
         <span class="tw-inline-block tw-mr-5">{{ cityData.currency.name }}</span>
         <span class="tw-inline-block tw-bg-slate-200 tw-rounded">{{ cityData.currency.code }}</span>
       </h4>
+
+      <div class="tw-flex tw-flex-col tw-mt-3" *ngIf="wikiData">
+        <p>{{ wikiData }}</p>
+      </div>
     </div>
   </div>
 
   <!-- *** COLUMN 2 *** -->
   <div class="tw-flex tw-flex-col tw-justify-items-start tw-items-start">
-    <div class="tw-flex tw-flex-col tw-gap-5 tw-p-5" *ngIf="wikiData">
-      <p>{{ wikiData }}</p>
-    </div>
-    <div class="cesium-map-container tw-flex tw-flex-auto">
-      <app-cesium-map [coordinates]="coordinates" *ngIf="coordinates"></app-cesium-map>
+<!--    <div class="cesium-map-container tw-flex tw-flex-auto">-->
+<!--      <app-cesium-map [coordinates]="coordinates" *ngIf="coordinates"></app-cesium-map>-->
+<!--    </div>-->
+
+    <div class="google-chart-map tw-w-full">
+      <app-google-chart-map [cityData]="cityData"></app-google-chart-map>
     </div>
   </div>
 </div>

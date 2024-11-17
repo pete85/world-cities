@@ -1,0 +1,14 @@
+.google-chart-map-container {
+
+  position: relative;
+
+  .geo-label {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    z-index: 1000;
+    background-color: theme('colors.slate.200');
+    padding: 10px;
+    border-radius: 8px;
+  }
+}

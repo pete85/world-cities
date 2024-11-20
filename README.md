@@ -6,20 +6,19 @@ Code can be downloaded / cloned from [https://github.com/pete85/world-cities](ht
 
 ## Introduction
 
-For this test, I created a simple application consisting of **AppComponent** and its child **SearchComponent**. 
+For this project, I created a simple application consisting of **HomeComponent**, its child **SearchComponent** and **CityComponent**. 
 
 The SearchComponent contains an input field, where user input is passed up to the AppComponent. 
-When the input reaches two or more characters, AppComponent triggers the _getCities() function, which uses 
-CitiesService (CS) to make an HTTP request to my portfolio server. The CitiesService _getCities() function 
-performs the HTTP request, and AppComponent subscribes to the response.
+When the input reaches two or more characters, HomeComponent triggers the _getCities() function, which uses 
+CitiesService (CS) to make an HTTP request to my portfolio server. The CitiesService _getCities()_ function 
+performs the HTTP request, and HomeComponent subscribes to the response.
 
-![img_3.png](img_3.png)
+CityComponent calls the CitiesService's _getCity()_ to obtain **geonameid**. With that in place, the component calls the _getCityDetails(geonameid)_. If
+data returned contains _wiki_url_, the _getWikiDescription()_ is called. These calls provide full overview of a selected city.
 
-![img_4.png](img_4.png)
+### Limitations
 
-![img_5.png](img_5.png)
-
-![img_6.png](img_6.png)
+The _getCityDetails()_ can call data only 50 times per day.
 
 ## Implementation
 

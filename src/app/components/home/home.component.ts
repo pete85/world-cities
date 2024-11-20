@@ -90,7 +90,16 @@ export class HomeComponent implements OnDestroy {
   }
 
   viewCityDetails() {
-    this._router.navigate(['/city'], { queryParams: { geonameid: this.citiesList[0].geonameid }, state: { city: this.citiesList[0] } });
+
+    const [cityPart, countryPart] = this.selectedRecord.split(" (");
+    const cityName = cityPart.split(",")[0].trim();
+    const countryName = countryPart.replace(")", "").trim();
+
+    const selectedCity: City = this.citiesList.filter(el => el.name === cityName && el.country === countryName)[0];
+
+    console.log('selectedCity: ', selectedCity);
+
+    this._router.navigate(['/city'], { queryParams: { geonameid: selectedCity.geonameid }, state: { city: selectedCity } });
   }
 
   ngOnDestroy() {

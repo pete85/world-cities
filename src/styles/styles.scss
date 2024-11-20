@@ -41,6 +41,7 @@ h1, h2, h3, h4, p {
   top: 0;
   left: 0;
   right: 0;
+  z-index: 100;
 }
 
 .app-body {
@@ -121,17 +122,23 @@ h1, h2, h3, h4, p {
 }
 
 .cesium-map-container {
-  padding: 20px;
+  padding: 10px 20px;
   width: calc(100% - 40px);
+  height: 100%;
+  .cesium-container {
+    width: 100%;
+    height: 100%;
+    canvas {
+      width: 100% !important;
+      height: 100% !important;
+    }
+  }
 }
 
-.cesium-container {
+.cesium-viewer, .cesium-viewer-cesiumWidgetContainer, .cesium-widget {
   width: 100%;
-
-  canvas {
-    width: 100% !important;
-    height: 100% !important;
-  }
+  height: 100%;
+  max-height: calc(100vh - 180px);
 }
 
 app-cesium-map {
@@ -142,10 +149,22 @@ app-google-chart-map {
   display: block;
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 
-.google-chart-map {
-  padding: 20px;
-  width: calc(100% - 40px);
-  height: calc(100% - 40px);
+.city-details-container {
+  position: relative; /* Required to respect z-index */
+  z-index: 1; /* Ensures it sits above the map */
 }
+
+
+.google-chart-map {
+  position: fixed; /* Sticks it to the viewport */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh; /* Covers the full viewport */
+  z-index: 0; /* Place it behind other elements but above default backgrounds */
+}
+
+

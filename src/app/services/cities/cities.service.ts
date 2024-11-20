@@ -42,10 +42,10 @@ export class CitiesService {
     if (this._cityCache) {
       return of(this._cityCache);
     } else {
-      // return this._http.get<WorldGeoData>(`${this.baseUrl}/world-geo-data/city`, {params: params});
-      return this._http.get<any>(`${this.baseUrl}/world-geo-data/city`, {params: params}).pipe(
-        tap(data => this._cityCache = data)
-      );
+      return this._http.get<WorldGeoData>(`${this.baseUrl}/world-geo-data/city`, {params: params});
+      // return this._http.get<any>(`${this.baseUrl}/world-geo-data/city`, {params: params}).pipe(
+      //   tap(data => this._cityCache = data)
+      // );
     }
 
   }

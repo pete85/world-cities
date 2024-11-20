@@ -23,7 +23,7 @@ export class GoogleChartMapComponent implements OnChanges {
       ['Latitude', 'Longitude', 'City', 'Population'],
     ],
     options: {
-      displayMode: 'markers',
+      displayMode: 'regional',
       region: 'world',
       colorAxis: {colors: ['#fecaca', '#991b1b'], legend: {position: 'none'}}, // Gradient colors
       backgroundColor: '#f1f5f9',

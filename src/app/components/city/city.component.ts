@@ -26,7 +26,7 @@ export class CityComponent implements OnInit, OnDestroy {
   city: City | null = null;
   cityId: string | null = null;
   cityData: WorldGeoDataCity | null = null;
-  coordinates: Coordinates | undefined;
+  coordinates: Coordinates | null = null;
   errorMessage: string | null = null;
   wikiData: string = '';
   subCity$: Subscription | undefined;
@@ -42,15 +42,12 @@ export class CityComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.cityId = this.getCityId();
-
-    if (this.cityId) {
-      this.getCity(this.cityId);
-    }
+    this.getCityId();
   }
 
   getCityId() {
-    return this._route.snapshot.queryParamMap.get('geonameid');
+    const cityId: string | null = this._route.snapshot.queryParamMap.get('geonameid');
+    this.getCity(<string>cityId);
   }
 
   getCity(cityId: string) {
@@ -58,7 +55,6 @@ export class CityComponent implements OnInit, OnDestroy {
       next: response => {
         if (response) {
           this.city = response;
-          console.log('City: ', response);
           this.getCityDetails(cityId);
         }
       },
@@ -69,16 +65,23 @@ export class CityComponent implements OnInit, OnDestroy {
   }
 
   getCityDetails(cityId: string) {
+
+    console.log('City ID: ', cityId);
+
+    this.coordinates = null;
     this.subCityDetails$ = this._citiesService.getCityDetails(cityId).subscribe({
       next: response => {
         if (response) {
           console.log('RES: ', response);
           this.cityData = response.data;
           this.coordinates = {
-            latitude: this.cityData.latitude,
-            longitude: this.cityData.longitude,
+            latitude: response.data.latitude,
+            longitude: response.data.longitude,
           }
-          this.getWikiDescription(response.data.wiki_url);
+          console.log('COORD: ', this.coordinates);
+          if (response.data.wiki_url) {
+            this.getWikiDescription(response.data.wiki_url);
+          }
         }
       },
       error: error => {
@@ -90,11 +93,10 @@ export class CityComponent implements OnInit, OnDestroy {
   }
 
   getWikiDescription(title: string) {
-    const tempTitle = "https://en.wikipedia.org/wiki/Pozna%C5%84";
+    console.log('Title: ', title);
     this.subWikiDescription$ = this._wikiService.getFirstParagraph(title).subscribe({
       next: response => {
         if (response) {
-          console.log('WIKI RES: ', response);
           this.wikiData = response;
         }
       },

@@ -39,10 +39,12 @@
               "src/styles/styles.scss"
             ],
             "scripts": [
-              "node_modules/cesium/Build/Cesium/Cesium.js"
             ],
             "serviceWorker": true,
-            "ngswConfigPath": "ngsw-config.json"
+            "ngswConfigPath": "ngsw-config.json",
+            "allowedCommonJsDependencies": [
+              "nosleep.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -110,7 +112,6 @@
               "src/styles/styles.scss"
             ],
             "scripts": [
-              "node_modules/cesium/Build/Cesium/Cesium.js"
             ]
           }
         }
